@@ -1,0 +1,11 @@
+{
+  "name": "ci-staging-load-playwright",
+  "private": true,
+  "description": "graphide-ci derived environment layers (A2): a Node job with a lockfile that installs Playwright's browsers with their system dependencies.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
