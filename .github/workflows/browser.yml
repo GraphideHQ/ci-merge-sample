@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   browser:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.GRAPHIDE_CI_RUNNER == 'off' && 'ubuntu-latest' || 'graphide-linux-x64-4' }}
     timeout-minutes: 20
     defaults:
       run:
