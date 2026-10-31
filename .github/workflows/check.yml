@@ -32,4 +32,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Lint
-        run: test -f check.sh && echo "lint: ok"
+        run: test -f check.sh && echo "lint ok"
