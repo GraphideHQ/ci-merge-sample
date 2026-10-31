@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.GRAPHIDE_CI_RUNNER == 'off' && 'ubuntu-latest' || 'graphide-linux-x64-4' }}
     steps:
       - uses: actions/checkout@v4
       - name: Commit under test
@@ -18,7 +18,7 @@ jobs:
   # Reads a secret, so graphide-ci's shadow cannot compare it (the zero-touch proof's job that
   # moves with no run beforehand). It passes with or without the secret.
   deploy-check:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.GRAPHIDE_CI_RUNNER == 'off' && 'ubuntu-latest' || 'graphide-linux-x64-4' }}
     env:
       SAMPLE_TOKEN: ${{ secrets.ZT_SAMPLE_TOKEN }}
     steps:
