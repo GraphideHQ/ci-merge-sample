@@ -14,3 +14,22 @@ jobs:
         run: git log -1 --format='commit %H tree %T parents %P'
       - name: Check the tree
         run: sh check.sh
+
+  # Reads a secret, so graphide-ci's shadow cannot compare it (the zero-touch proof's job that
+  # moves with no run beforehand). It passes with or without the secret.
+  deploy-check:
+    runs-on: ubuntu-latest
+    env:
+      SAMPLE_TOKEN: ${{ secrets.ZT_SAMPLE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy check
+        run: sh deploy-check.sh
+
+  # A job a founder keeps on the customer's runner (ci-admin onboard exclude).
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint
+        run: test -f check.sh && echo "lint: ok"
